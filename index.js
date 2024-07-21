@@ -49,3 +49,5 @@ console.log('Updated State', store.getState())
 store.dispatch(orderCake())
 store.dispatch(orderCake())
 store.dispatch(orderCake())
+
+unsubscribe()
