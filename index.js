@@ -3,6 +3,7 @@ const createStore = redux.createStore
 
 // a string that defined the type of action 
 const CAKE_ORDERD = "CAKE_ORDERD"
+const CAKE_RESTOCKED = "CAKE_RESTOCKED"
 
 // a simple Action wrapped in an action creator
 
@@ -10,6 +11,13 @@ function orderCake() {
     return {
         type: CAKE_ORDERD,
         quantity: 1,
+    }
+}
+
+function restockCake(qty = 1) {
+    return{
+        type:CAKE_RESTOCKED,
+        quantity: qty, 
     }
 }
 
@@ -33,6 +41,12 @@ const reducer = (state = initialState, action) => {
                 numOfCakes: state.numOfCakes - 1,
 
             }
+        case CAKE_RESTOCKED :
+            return{
+                ...state,
+                numOfCakes: state.numOfCakes + action.quantity
+            }
+        
         default:
             return state
     }
@@ -49,5 +63,6 @@ console.log('Updated State', store.getState())
 store.dispatch(orderCake())
 store.dispatch(orderCake())
 store.dispatch(orderCake())
+store.dispatch(restockCake(3))
 
 unsubscribe()
