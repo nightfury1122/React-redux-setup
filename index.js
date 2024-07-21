@@ -1,5 +1,6 @@
 const redux = require ('redux')
 const createStore = redux.createStore 
+const bindActiocreator = redux.bindActionCreators
 
 // a string that defined the type of action 
 const CAKE_ORDERD = "CAKE_ORDERD"
@@ -60,9 +61,16 @@ const unsubscribe = store.subscribe (()=>
 console.log('Updated State', store.getState())
 )
 
-store.dispatch(orderCake())
-store.dispatch(orderCake())
-store.dispatch(orderCake())
-store.dispatch(restockCake(3))
+// store.dispatch(orderCake())
+// store.dispatch(orderCake())
+// store.dispatch(orderCake())
+// store.dispatch(restockCake(3))
 
+//just another way to dispatch actions(not necessary)
+actions = bindActiocreator({orderCake , restockCake }, store.dispatch)
+actions.orderCake()
+actions.orderCake()
+actions.orderCake()
+actions.restockCake(3)
+ 
 unsubscribe()
