@@ -1,3 +1,6 @@
+const redux = require ('redux')
+const createStore = redux.createStore 
+
 // a string that defined the type of action 
 const CAKE_ORDERD = "CAKE_ORDERD"
 
@@ -35,3 +38,14 @@ const reducer = (state = initialState, action) => {
     }
 
 }
+
+const store = createStore(reducer)
+console.log('initial State', store.getState())
+
+const unsubscribe = store.subscribe (()=>
+console.log('Updated State', store.getState())
+)
+
+store.dispatch(orderCake())
+store.dispatch(orderCake())
+store.dispatch(orderCake())
