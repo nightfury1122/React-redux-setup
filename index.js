@@ -2,6 +2,12 @@ const redux = require('redux')
 const createStore = redux.createStore
 const bindActiocreator = redux.bindActionCreators
 const combineReducers = redux.combineReducers
+const reduxLogger = require('redux-logger')
+const applyMiddleware = redux.applyMiddleware
+
+// we are using Logger library to learn and implement about middleware  
+// Logger just implements all information you need about redux state  
+const logger = reduxLogger.createLogger()
 
 // a string that defined the type of action 
 const CAKE_ORDERD = "CAKE_ORDERD"
@@ -107,12 +113,11 @@ const rootReducer = combineReducers({
 })
 
 // the createStore method can only accept one reducer so we need to use combine reducers here 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer , applyMiddleware(logger))
 console.log('initial State', store.getState())
 
-const unsubscribe = store.subscribe(() =>
-    console.log('Updated State', store.getState())
-)
+//consolelog statement is removed since we have the logger now to log information 
+const unsubscribe = store.subscribe(() => {})
 
 // store.dispatch(orderCake())
 // store.dispatch(orderCake())
