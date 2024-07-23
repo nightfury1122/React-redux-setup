@@ -113,11 +113,11 @@ const rootReducer = combineReducers({
 })
 
 // the createStore method can only accept one reducer so we need to use combine reducers here 
-const store = createStore(rootReducer , applyMiddleware(logger))
+const store = createStore(rootReducer, applyMiddleware(logger))
 console.log('initial State', store.getState())
 
 //consolelog statement is removed since we have the logger now to log information 
-const unsubscribe = store.subscribe(() => {})
+const unsubscribe = store.subscribe(() => { })
 
 // store.dispatch(orderCake())
 // store.dispatch(orderCake())
